@@ -10,6 +10,11 @@ from sklearn.model_selection import (
     learning_curve,
 )
 
+from texts import (
+    dataset_string,
+    algorithm_string, 
+)
+
 st.set_page_config(
     page_title="Streamlit Template",
     page_icon="🧊",
@@ -291,6 +296,7 @@ with Home:
 
     with Home_col2:
         st.write("This is data description")
+        st.write(dataset_string(dataset))
         if (
             dataset.lower().replace(" ", "_") == "diabetes"
             or dataset.lower().replace(" ", "_") == "iris"
