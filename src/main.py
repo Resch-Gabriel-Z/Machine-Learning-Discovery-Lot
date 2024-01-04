@@ -16,6 +16,12 @@ from texts import (
     other_string,
 )
 
+# TODO: visualizer of training steps (curves)
+# TODO: dendogram for agglomerative clustering
+# TODO: clean up the code
+# TODO: comments
+# TODO: upload on github
+
 score = None
 
 st.set_page_config(
