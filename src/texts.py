@@ -28,41 +28,50 @@ def dataset_string(dataset):
 
 
 def algorithm_string(algorithm):
-    if algorithm == "Knn":
+    if algorithm == "KNN":
         return Knn
-    elif algorithm == "Svm":
+    elif algorithm == "SVM":
         return Svm
-    elif algorithm == "Decision_tree":
+    elif algorithm == "Decision Tree":
         return Decision_tree
-    elif algorithm == "Random_forest":
+    elif algorithm == "Random Forest":
         return Random_forest
-    elif algorithm == "Linear_regression":
+    elif algorithm == "Linear Regression":
         return Linear_regression
-    elif algorithm == "Lasso_regression":
+    elif algorithm == "Lasso":
         return Lasso_regression
-    elif algorithm == "Ridge_regression":
+    elif algorithm == "Ridge":
         return Ridge_regression
-    elif algorithm == "Kernel_regression":
+    elif algorithm == "Kernel Ridge":
         return Kernel_regression
-    elif algorithm == "Svr":
+    elif algorithm == "SVR":
         return Svr
-    elif algorithm == "KNN_regression":
+    elif algorithm == "KNN Regression":
         return KNN_regression
-    elif algorithm == "Decision_tree_regression":
+    elif algorithm == "Decision Tree Regression":
         return Decision_tree_regression
-    elif algorithm == "Random_forest_regression":
+    elif algorithm == "Random Forest Regression":
         return Random_forest_regression
-    elif algorithm == "K_means":
+    elif algorithm == "KMeans":
         return K_means
-    elif algorithm == "DBScan":
+    elif algorithm == "DBSCAN":
         return DBScan
-    elif algorithm == "Hierarchical_clustering":
+    elif algorithm == "Agglomerative Clustering":
         return Hierarchical_clustering
     elif algorithm == "Pca":
         return Pca
     else:
         return "Error"
 
+def other_string(text):
+    if text == "header":
+        return header
+    elif text == "footer":
+        return footer
+    elif text == "about":
+        return about
+    else:
+        return "Error"
 
 # --------------------- Dataset Description --------------------- #
 
@@ -257,4 +266,44 @@ Pca = """
     """
 
 
-# --------------------- Result Description --------------------- #
+# --------------------- Header, Footer, About, Description --------------------- #
+
+header = """
+    <h1>Machine Learning Playground</h1>
+    <h2>Explore and visualize different algorithms from scikit-learn and how they work on different datasets</h2>
+    <ul>
+        <li>Choose a dataset</li>
+        <li>Choose an algorithm</li>
+        <li>Choose the hyperparameters</li>
+        <li>click on "Run" to see the results</li>
+    </ul>
+    
+    Machine Learning can be very confusing and overwhelming.
+    But it has the advantage of being very intuitive when visualized.
+    You can view Machine Learning as a way to find mathematical language to describe how humans would solve a problem.
+    <br>
+    So if you want to learn Machine Learning, you should start with the intuition.
+    From the Intuition, you can learn the mathematics. You can see which part of the formula represents which part of the intuition.
+    Especially those, non neural network algorithms, are very intuitive. As they are not a giant black box of neurons and numbers.
+    They are simple algorithms that are easy to understand, if you know what they want to convey.
+    While I don't can give you the mathematics (there are fantastic books for that), I can give you the intuition. The visualization.
+"""
+
+footer = """
+        2023 - Sci-kit Learning Playground
+        <br>
+        Created by <a href="https://github.com/Resch-Gabriel-Z"<b>Gabe</b></a>
+"""
+
+about = """
+    <h1>About</h1>
+    <p>
+        This was made to visualize how different algorithms work on different datasets.
+        How some algorithms have poor results due to data being linearly inseparable.
+        or how some algorithms are very sensitive to hyperparameters.
+        I hope it helps you a bit :)
+    </p>
+    <p>
+        The source code can be found on <a href="
+        </p>
+"""

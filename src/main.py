@@ -13,6 +13,7 @@ from sklearn.model_selection import (
 from texts import (
     dataset_string,
     algorithm_string,
+    other_string,
 )
 
 score = None
@@ -108,7 +109,7 @@ X_train, X_test, y_train, y_test, df = load_data(
 
 st.markdown('<p class="Page_title">Streamlit Template</h1>', unsafe_allow_html=True)
 
-Home, About, Contact = st.tabs(["Home", "About", "Contact"])
+Home, About = st.tabs(["Home", "About"])
 
 with Home:
     Home_col1, Home_col2 = st.columns([2, 1])
@@ -118,12 +119,12 @@ with Home:
         main_content = st.container()
 
         with header_container:
-            st.markdown('<p class="Section_title">Header</p>', unsafe_allow_html=True)
+            st.markdown(f'<p class="Section_title">{other_string("header")}</p>', unsafe_allow_html=True)
             st.markdown("---")
 
         with description_container:
             st.markdown(
-                '<p class="Section_title">Description</p>', unsafe_allow_html=True
+                f'<p class="Section_title">{algorithm_string(algorithm)}</p>', unsafe_allow_html=True
             )
             st.markdown("---")
 
@@ -425,10 +426,10 @@ with Home:
 
 
 with About:
-    st.write("About")
+    st.markdown(
+        f'<p class="Section_title">{other_string("about")}</p>', unsafe_allow_html=True
+    )
 
-with Contact:
-    st.write("Contact")
 
 # ------------------- Main -------------------
 
@@ -436,14 +437,7 @@ with Contact:
 st.markdown("---")
 
 st.markdown(
-    """
-            <div class="footer">
-            <p>© 2021 - Streamlit Template</p>
-            <p>Created by me</p>
-            <p> Made with ❤️ in 🇨🇭</p>
-            </div>
-            """,
-    unsafe_allow_html=True,
+    f'<p class="footer">{other_string("footer")}</p>', unsafe_allow_html=True
 )
 
 # ------------------- Footer -------------------
