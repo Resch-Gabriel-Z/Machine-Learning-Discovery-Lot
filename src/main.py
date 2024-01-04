@@ -12,8 +12,10 @@ from sklearn.model_selection import (
 
 from texts import (
     dataset_string,
-    algorithm_string, 
+    algorithm_string,
 )
+
+score = None
 
 st.set_page_config(
     page_title="Streamlit Template",
@@ -126,16 +128,16 @@ with Home:
             st.markdown("---")
 
         with main_content:
-            main_content_col1, main_content_col2 = st.columns([5, 1])
+            main_content_col1 = st.container()
 
             main_content_col1.markdown(
                 '<p class="Section_title">Main content</p>', unsafe_allow_html=True
             )
             main_content_col1.markdown("---")
 
-            if main_content_col2.button("Run"):
+            if main_content_col1.button("Run"):
                 model.fit(X_train, y_train)
-                # score = model.score(X_test, y_test)
+                score = model.score(X_test, y_test)
                 # main_content_col1.markdown(f'<p class="Result">Score: {score}</p>', unsafe_allow_html=True)
                 if ML_type == "Classification":
                     x_min, x_max = X_train[:, 0].min() - 1, X_train[:, 0].max() + 1
@@ -289,13 +291,7 @@ with Home:
                         unsafe_allow_html=True,
                     )
 
-            main_content_col2.markdown("---")
-            main_content_col2.markdown(
-                '<p class="Section_title">Results</p>', unsafe_allow_html=True
-            )
-
     with Home_col2:
-        st.write("This is data description")
         st.write(dataset_string(dataset))
         if (
             dataset.lower().replace(" ", "_") == "diabetes"
@@ -420,7 +416,12 @@ with Home:
         else:
             fig = plot_data("target", dataset.lower().replace(" ", "_"), df)
         st.plotly_chart(fig, use_container_width=True)
-        st.write("This is the result")
+        # write score here
+        if score != None:
+            st.markdown(
+                f'<p class="Result">Score: {np.round(score,2)}</p>',
+                unsafe_allow_html=True,
+            )
 
 
 with About:

@@ -9,10 +9,10 @@ def dataset_string(dataset):
         return Classification_datasets
     elif dataset == "Regression":
         return Regression_datasets
-    elif dataset == "Moon_clustering":
+    elif dataset == "Moons":
         return Moon_dataset_clustering
-    elif dataset == "Bloobs_clustering":
-        return Bloobs_dataset_clustering
+    elif dataset == "Blobs":
+        return Blobs_dataset_clustering
     elif dataset == "Circles_clustering":
         return Circles_dataset_clustering
     elif dataset == "Classification_clustering":
@@ -21,11 +21,12 @@ def dataset_string(dataset):
         return Iris_dataset
     elif dataset == "Diabetes":
         return Diabetes_dataset
-    elif dataset == "Breast_cancer":
+    elif dataset == "Breast Cancer":
         return Breast_cancer_dataset
     else:
         return "Error"
-    
+
+
 def algorithm_string(algorithm):
     if algorithm == "Knn":
         return Knn
@@ -61,6 +62,7 @@ def algorithm_string(algorithm):
         return Pca
     else:
         return "Error"
+
 
 # --------------------- Dataset Description --------------------- #
 
@@ -103,38 +105,38 @@ Moon_dataset_clustering = """
     While also used for classification tasks, it can be used for clustering tasks.
 """
 
-Bloobs_dataset_clustering = """
+Blobs_dataset_clustering = """
     The Bloobs dataset consists of two Blobs that are strictly separated.
     This makes it easy to cluster them, since they are so clearly separated aka clustered.
     """
-    
+
 Circles_dataset_clustering = """
     The Circles dataset consists of two circles where one is inside the other.
     This makes it harder to cluster them, since they are not clearly separated.
     Giving a good result is harder, but not impossible.
     """
-    
+
 Classification_datasets_clustering = """
     The Classification datasets are made for binary classification tasks. But we can misuse them for clustering tasks.
     """
-    
+
 """ Dimensionality Reduction Datasets """
-    
+
 Iris_dataset = """
     The Iris dataset is a very popular dataset for classification tasks.
     it consists of 4 dimensions, which makes it a good dataset for dimensionality reduction.
     """
-    
+
 Diabetes_dataset = """
     The Diabetes dataset is a very popular dataset for regression tasks.
     it consists of 10 dimensions, which makes it a good dataset for dimensionality reduction.
     """
-    
+
 Breast_cancer_dataset = """
     The Breast Cancer dataset is a very popular dataset for classification tasks.
     it consists of 15 dimensions, which makes it a good dataset for dimensionality reduction.
     """
-    
+
 # --------------------- Algorithmen Description --------------------- #
 
 """ Classification Algorithms """
@@ -143,7 +145,7 @@ Knn = """
     The KNN is the most classic Classification Algorithm.
     Going through all the data points and checking which class is the most common in the nearest neighbors.
     """
-    
+
 Svm = """
     The SVM is a very popular Classification Algorithm.
     It gave companies billions of dollars in revenue.
@@ -154,19 +156,19 @@ Svm = """
     Luckily, there are kernels that can transform the data into a higher dimension, where it is linearly separable.
     The SVM has many kernels, that make it very versatile even for many non-linearly separable problems.
     """
-    
+
 Decision_tree = """
     The Decision Tree works by splitting the data points into smaller and smaller groups.
     It does so by finding the feature that splits the data points the best. It hopes to find a feature and a split, such that one leaf contains only one class.
     The Decision Tree is very good for non-linearly separable data, but it is prone to overfitting.
     """
-    
+
 Random_forest = """
     A Random forest is a collection of Decision Trees. It works by creating many Decision Trees and then letting them vote on the class.
     Often, only a subset of the features is used for each Decision Tree. This is called bagging.
     The Random Forest is very good for non-linearly separable data, and less prone to overfitting than a single Decision Tree.
     """
-    
+
 """ Regression Algorithms """
 
 Linear_regression = """
@@ -178,48 +180,48 @@ Linear_regression = """
     
     However, the Linear Regression is only good for linearly separable data.
     """
-    
+
 Lasso_regression = """
     The Lasso Regression is a Regression Algorithm that uses regularization.
     So while it works like the Linear Regression, it also tries to minimize the weights of the features.
     This makes it less prone to overfitting.
     """
-    
+
 Ridge_regression = """
     The Ridge Regression is a Regression Algorithm that uses regularization.
     So while it works like the Linear Regression, it also tries to minimize the weights of the features.
     This makes it less prone to overfitting.
     """
-    
+
 Kernel_regression = """
     The Kernel Regression is a Regression Algorithm that uses kernels.
     So while it works like the Linear Regression, it also uses kernels to transform the data into a higher dimension.
     This makes it very good for non-linearly separable data.
     """
-    
+
 Svr = """
     The SVR is a very popular Regression Algorithm.
     It is similar to SVM, but tailored for regression tasks.
     """
-    
+
 KNN_regression = """
     KNN is another algorithm that can be used for regression tasks.
     It works by finding the nearest neighbors and then averaging their values.
     """
-    
+
 Decision_tree_regression = """
     The Decision Tree Regression works by splitting the data points into smaller and smaller groups.
     It does so by finding the feature that splits the data points the best. It hopes to find a feature and a split, such that one leaf contains only one value.
     I.e. not a class, but a value.
     The Decision Tree Regression is very good for non-linearly separable data, but it is prone to overfitting.
     """
-    
+
 Random_forest_regression = """
     A Random forest is a collection of Decision Trees. It works by creating many Decision Trees and then averaging their values.
     Often, only a subset of the features is used for each Decision Tree. This is called bagging.
     The Random Forest Regression is very good for non-linearly separable data, and less prone to overfitting than a single Decision Tree.
     """
-    
+
 """ Clustering Algorithms """
 
 K_means = """
@@ -227,7 +229,7 @@ K_means = """
     It initializes k centroids and then assigns each data point to the nearest centroid.
     then it recalculates the centroids and repeats the process until the centroids don't move anymore.
     """
-    
+
 DBScan = """
     The DBSCAN or Density-Based Spatial Clustering of Applications with Noise is a clustering algorithm, that doesn't need to know the number of clusters.
     It works by finding a core sample and then expanding the cluster by finding all core samples that are reachable. defined by a distance and a number of samples.
@@ -235,14 +237,14 @@ DBScan = """
     If no more samples can be added, it starts a new cluster.
     Every sample left is considered noise.
     """
-    
+
 Hierarchical_clustering = """
     The Hierarchical Clustering is a clustering algorithm that creates a hierarchy of clusters.
     It works by defining each data point as a cluster and then merging the two closest clusters.
     It repeats this process until there is only one cluster left.
     This creates a hierarchy of clusters, which can be visualized as a dendrogram.
     """
-    
+
 """ Dimensionality Reduction Algorithms """
 
 Pca = """
@@ -253,6 +255,6 @@ Pca = """
     
     PCA features are not the same as the original features. They are a combination of the original features. That are orthogonal to each other.
     """
-    
+
 
 # --------------------- Result Description --------------------- #
