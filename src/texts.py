@@ -58,7 +58,7 @@ def algorithm_string(algorithm):
         return DBScan
     elif algorithm == "Agglomerative Clustering":
         return Hierarchical_clustering
-    elif algorithm == "Pca":
+    elif algorithm == "PCA":
         return Pca
     elif algorithm == "Logistic Regression":
         return Logistic_regression

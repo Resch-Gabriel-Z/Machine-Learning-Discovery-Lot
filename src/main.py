@@ -22,14 +22,15 @@ from sklearn.metrics import (
 )
 from sklearn import tree
 
-# TODO: visualizer of training steps (curves)
-# TODO: dendogram for agglomerative clustering
 # TODO: clean up the code
 # TODO: comments
 # TODO: upload on github
+# TODO: change style.css to make the page more appealing
 
 score = None
 conf = None
+fig3 = None
+
 st.set_page_config(
     page_title="Streamlit Template",
     page_icon="🧊",
@@ -126,18 +127,19 @@ st.markdown('<p class="Page_title">Streamlit Template</h1>', unsafe_allow_html=T
 Home, About = st.tabs(["Home", "About"])
 
 with Home:
+    header_container = st.container()
     Home_col1, Home_col2 = st.columns([2, 1])
+
+    with header_container:
+        st.markdown(
+            f'<p class="Section_title">{other_string("header")}</p>',
+            unsafe_allow_html=True,
+        )
+        st.markdown("---")
+
     with Home_col1:
-        header_container = st.container()
         description_container = st.container()
         main_content = st.container()
-
-        with header_container:
-            st.markdown(
-                f'<p class="Section_title">{other_string("header")}</p>',
-                unsafe_allow_html=True,
-            )
-            st.markdown("---")
 
         with description_container:
             st.markdown(
@@ -148,11 +150,6 @@ with Home:
 
         with main_content:
             main_content_col1 = st.container()
-
-            main_content_col1.markdown(
-                '<p class="Section_title">Main content</p>', unsafe_allow_html=True
-            )
-            main_content_col1.markdown("---")
 
             if main_content_col1.button("Run"):
                 # main_content_col1.markdown(f'<p class="Result">Score: {score}</p>', unsafe_allow_html=True)
@@ -324,15 +321,20 @@ with Home:
                     else:
                         fig2.update_traces(diagonal_visible=False, showupperhalf=False)
                     fig2.update_layout(
-                        height=800, width=800, title="Dimensionality Reduction"
+                        height=500, width=500, title="Dimensionality Reduction"
                     )
                     main_content_col1.plotly_chart(fig2, use_container_width=True)
                     cummlative_variance = np.cumsum(model.explained_variance_ratio_)
-                    st.markdown(
-                        f'<p class="PCA_Result">Cumulative explained variance: {np.round(cummlative_variance[-1],2)}%</p>',
-                        unsafe_allow_html=True,
+                    fig3 = px.bar(
+                        x=np.arange(1, n_components + 1),
+                        y=cummlative_variance,
+                        title="Cumulative explained variance",
+                        text_auto=True,
                     )
-                    score = model.score(X_test, y_test)
+                    fig3.update_layout(
+                        xaxis_title="Number of components",
+                        yaxis_title="Cumulative explained variance",
+                    )
 
     with Home_col2:
         st.write(dataset_string(dataset))
@@ -467,6 +469,9 @@ with Home:
             )
         if conf != None:
             Home_col2.plotly_chart(conf, use_container_width=True)
+
+        if fig3 != None:
+            Home_col2.plotly_chart(fig3, use_container_width=True)
 
 
 with About:
