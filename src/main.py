@@ -4,6 +4,7 @@ import pandas as pd
 from dataset import load_data
 from data_visualizer import plot_data
 import plotly.express as px
+import plotly.figure_factory as ff
 import plotly.graph_objects as go
 from model_chooser import model_chooser
 from sklearn.model_selection import (
@@ -15,6 +16,11 @@ from texts import (
     algorithm_string,
     other_string,
 )
+from sklearn.metrics import (
+    mean_squared_error,
+    confusion_matrix,
+)
+from sklearn import tree
 
 # TODO: visualizer of training steps (curves)
 # TODO: dendogram for agglomerative clustering
@@ -23,7 +29,7 @@ from texts import (
 # TODO: upload on github
 
 score = None
-
+conf = None
 st.set_page_config(
     page_title="Streamlit Template",
     page_icon="🧊",
@@ -102,6 +108,8 @@ model = model_chooser(algorithm)
 X_train, X_test, y_train, y_test, df = load_data(
     dataset.lower().replace(" ", "_"), test_size, random_state
 )
+X = np.concatenate((X_train, X_test))
+y = np.concatenate((y_train, y_test))
 # for the plot i need to come up with a better solution, this is just a workaround
 # classifcation is good, so scatter plot is fine, same goes for clustering and dimensionality reduction
 # regression is like 10d, so i need to come up with a better solution
@@ -125,12 +133,16 @@ with Home:
         main_content = st.container()
 
         with header_container:
-            st.markdown(f'<p class="Section_title">{other_string("header")}</p>', unsafe_allow_html=True)
+            st.markdown(
+                f'<p class="Section_title">{other_string("header")}</p>',
+                unsafe_allow_html=True,
+            )
             st.markdown("---")
 
         with description_container:
             st.markdown(
-                f'<p class="Section_title">{algorithm_string(algorithm)}</p>', unsafe_allow_html=True
+                f'<p class="Section_title">{algorithm_string(algorithm)}</p>',
+                unsafe_allow_html=True,
             )
             st.markdown("---")
 
@@ -143,12 +155,11 @@ with Home:
             main_content_col1.markdown("---")
 
             if main_content_col1.button("Run"):
-                model.fit(X_train, y_train)
-                score = model.score(X_test, y_test)
                 # main_content_col1.markdown(f'<p class="Result">Score: {score}</p>', unsafe_allow_html=True)
                 if ML_type == "Classification":
-                    x_min, x_max = X_train[:, 0].min() - 1, X_train[:, 0].max() + 1
-                    y_min, y_max = X_train[:, 1].min() - 1, X_train[:, 1].max() + 1
+                    model.fit(X_train, y_train)
+                    x_min, x_max = X_test[:, 0].min() - 1, X_test[:, 0].max() + 1
+                    y_min, y_max = X_test[:, 1].min() - 1, X_test[:, 1].max() + 1
                     xx, yy = np.meshgrid(
                         np.arange(x_min, x_max, 0.1), np.arange(y_min, y_max, 0.1)
                     )
@@ -169,15 +180,34 @@ with Home:
                     )
 
                     fig.add_scatter(
-                        x=X_train[:, 0],
-                        y=X_train[:, 1],
+                        x=X_test[:, 0],
+                        y=X_test[:, 1],
                         mode="markers",
-                        marker=dict(color=y_train),
+                        marker=dict(color=y_test),
                     )
                     main_content_col1.plotly_chart(fig, use_container_width=True)
+                    conf = px.imshow(
+                        confusion_matrix(
+                            y_test, model.predict(X_test), normalize="true"
+                        )
+                        * 100,
+                        text_auto=True,
+                    )
+                    conf.update_layout(
+                        title="Confusion Matrix",
+                        xaxis_title="Predicted",
+                        yaxis_title="Actual",
+                        xaxis=dict(
+                            showgrid=False, zeroline=False, showticklabels=False
+                        ),
+                        yaxis=dict(
+                            showgrid=False, zeroline=False, showticklabels=False
+                        ),
+                    )
                 elif ML_type == "Clustering":
+                    model.fit(X)
                     fig = px.scatter(
-                        X_train,
+                        X,
                         x=0,
                         y=1,
                         color=model.labels_,
@@ -187,6 +217,7 @@ with Home:
                     main_content_col1.plotly_chart(fig, use_container_width=True)
 
                 elif ML_type == "Regression":
+                    model.fit(X_train, y_train)
                     if (
                         algorithm != "Kernel Ridge"
                         and algorithm != "Lasso"
@@ -236,7 +267,9 @@ with Home:
                             yaxis=dict(range=[y_axis_lower_limit, 1]),
                         )
                         main_content_col1.plotly_chart(fig, use_container_width=True)
+                        score = mean_squared_error(model.predict(X_test), y_test)
                     else:
+                        model.fit(X_train, y_train)
                         fig = go.Figure()
                         fig.add_trace(
                             go.Scatter(
@@ -259,8 +292,10 @@ with Home:
                             title="Regression", xaxis_title="X", yaxis_title="y"
                         )
                         main_content_col1.plotly_chart(fig, use_container_width=True)
+                        score = mean_squared_error(model.predict(X_test), y_test)
 
                 elif ML_type == "Dimensionality Reduction":
+                    model.fit(X_train, y_train)
                     fig = px.scatter_matrix(
                         df,
                         dimensions=df.columns,
@@ -297,6 +332,7 @@ with Home:
                         f'<p class="PCA_Result">Cumulative explained variance: {np.round(cummlative_variance[-1],2)}%</p>',
                         unsafe_allow_html=True,
                     )
+                    score = model.score(X_test, y_test)
 
     with Home_col2:
         st.write(dataset_string(dataset))
@@ -429,6 +465,8 @@ with Home:
                 f'<p class="Result">Score: {np.round(score,2)}</p>',
                 unsafe_allow_html=True,
             )
+        if conf != None:
+            Home_col2.plotly_chart(conf, use_container_width=True)
 
 
 with About:
@@ -442,8 +480,6 @@ with About:
 # ------------------- Footer -------------------
 st.markdown("---")
 
-st.markdown(
-    f'<p class="footer">{other_string("footer")}</p>', unsafe_allow_html=True
-)
+st.markdown(f'<p class="footer">{other_string("footer")}</p>', unsafe_allow_html=True)
 
 # ------------------- Footer -------------------

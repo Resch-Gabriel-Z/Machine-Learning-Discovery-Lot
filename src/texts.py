@@ -60,8 +60,11 @@ def algorithm_string(algorithm):
         return Hierarchical_clustering
     elif algorithm == "Pca":
         return Pca
+    elif algorithm == "Logistic Regression":
+        return Logistic_regression
     else:
         return "Error"
+
 
 def other_string(text):
     if text == "header":
@@ -72,6 +75,7 @@ def other_string(text):
         return about
     else:
         return "Error"
+
 
 # --------------------- Dataset Description --------------------- #
 
@@ -160,7 +164,6 @@ Svm = """
     It gave companies billions of dollars in revenue.
     It works by finding a hyperplane that separates the data points such that the margin is maximized. (That means the distance between the hyperplane and the data points is maximized).
     The data points that are closest to the hyperplane are called support vectors and are theoretically the only data points that matter.
-    
     The SVM is very good for linearly separable data, but not so good for non-linearly separable data.
     Luckily, there are kernels that can transform the data into a higher dimension, where it is linearly separable.
     The SVM has many kernels, that make it very versatile even for many non-linearly separable problems.
@@ -178,6 +181,13 @@ Random_forest = """
     The Random Forest is very good for non-linearly separable data, and less prone to overfitting than a single Decision Tree.
     """
 
+Logistic_regression = """
+    While it has regression in its name, the Logistic Regression is a Classification Algorithm.
+    It works by applying the sigmoid function with trained weights (the slope and the bias) to a data point.
+    It then creates a continuous value between 0 and 1, which can be interpreted as a probability.
+    In this case all values above a certain cutoff (usually 0.5) are classified to belong to one class, while all values below are classified to belong to the other class.
+    """
+
 """ Regression Algorithms """
 
 Linear_regression = """
@@ -186,7 +196,6 @@ Linear_regression = """
     While there are sophisticated ways to gradually find the best line, the Linear Regression uses the normal equation to find the best line.
     That makes it unique, because it can learn the best line in one step.
     No matter how many dimensions the data has, the Linear Regression can find the best line in one step.
-    
     However, the Linear Regression is only good for linearly separable data.
     """
 
@@ -261,7 +270,6 @@ Pca = """
     By finding the most variance in the data, it can reduce the dimensionality of the data.
     This makes it easier to visualize the data and to train models on it.
     But also makes it harder to interpret the data.
-    
     PCA features are not the same as the original features. They are a combination of the original features. That are orthogonal to each other.
     """
 
@@ -277,7 +285,7 @@ header = """
         <li>Choose the hyperparameters</li>
         <li>click on "Run" to see the results</li>
     </ul>
-    
+    <br>
     Machine Learning can be very confusing and overwhelming.
     But it has the advantage of being very intuitive when visualized.
     You can view Machine Learning as a way to find mathematical language to describe how humans would solve a problem.
