@@ -4,7 +4,6 @@ import pandas as pd
 from dataset import load_data
 from data_visualizer import plot_data
 import plotly.express as px
-import plotly.figure_factory as ff
 import plotly.graph_objects as go
 from model_chooser import model_chooser
 from sklearn.model_selection import (
@@ -20,20 +19,14 @@ from sklearn.metrics import (
     mean_squared_error,
     confusion_matrix,
 )
-from sklearn import tree
-
-# TODO: clean up the code
-# TODO: comments
-# TODO: upload on github
-# TODO: change style.css to make the page more appealing
 
 score = None
 conf = None
 fig3 = None
 
 st.set_page_config(
-    page_title="Streamlit Template",
-    page_icon="🧊",
+    page_title="Machine Learning Discovery Lot",
+    page_icon="⚙️",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -472,9 +465,7 @@ with Home:
 
 
 with About:
-    st.markdown(
-        f'<p class="About">{other_string("about")}</p>', unsafe_allow_html=True
-    )
+    st.markdown(f'<p class="About">{other_string("about")}</p>', unsafe_allow_html=True)
 
 
 # ------------------- Main -------------------

@@ -277,7 +277,7 @@ Pca = """
 # --------------------- Header, Footer, About, Description --------------------- #
 
 header = """
-    <h1>Machine Learning Playground</h1>
+    <h1>Machine Learning Discovery Lot</h1>
     <h2>Explore and visualize different algorithms from scikit-learn and how they work on different datasets</h2>
     <ul>
         <li>Choose a dataset</li>
@@ -298,7 +298,7 @@ header = """
 """
 
 footer = """
-        2023 - Sci-kit Learning Playground
+        2024 - Machine Learning Discovery Lot
         <br>
         Created by <a href="https://github.com/Resch-Gabriel-Z"<b>Gabe</b></a>
 """
