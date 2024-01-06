@@ -33,8 +33,8 @@ def model_chooser(algorithm):
         st.sidebar.markdown("Choose parameters")
         n_estimators = st.sidebar.slider("Number of estimators", 100, 500)
         max_depth = st.sidebar.slider("Max depth", 1, 10)
-        min_samples_split = st.sidebar.slider("Min samples split", 1, 10)
-        min_samples_leaf = st.sidebar.slider("Min samples leaf", 1, 10)
+        min_samples_split = st.sidebar.slider("Min samples split", 2, 10)
+        min_samples_leaf = st.sidebar.slider("Min samples leaf", 2, 10)
         bootstrap = st.sidebar.selectbox("Bootstrap", ["True", "False"])
         bootstrap = 1 if bootstrap == "True" else 0
         model = create_model(
@@ -60,8 +60,8 @@ def model_chooser(algorithm):
     elif algorithm == "Decision Tree":
         st.sidebar.markdown("Choose parameters")
         max_depth = st.sidebar.slider("Max depth", 1, 10)
-        min_samples_split = st.sidebar.slider("Min samples split", 1, 10)
-        min_samples_leaf = st.sidebar.slider("Min samples leaf", 1, 10)
+        min_samples_split = st.sidebar.slider("Min samples split", 2, 10)
+        min_samples_leaf = st.sidebar.slider("Min samples leaf", 2, 10)
         model = create_model(
             "decision_tree",
             max_depth=max_depth,
@@ -89,8 +89,8 @@ def model_chooser(algorithm):
         st.sidebar.markdown("Choose parameters")
         n_estimators = st.sidebar.slider("Number of estimators", 100, 500)
         max_depth = st.sidebar.slider("Max depth", 1, 10)
-        min_samples_split = st.sidebar.slider("Min samples split", 1, 10)
-        min_samples_leaf = st.sidebar.slider("Min samples leaf", 1, 10)
+        min_samples_split = st.sidebar.slider("Min samples split", 2, 10)
+        min_samples_leaf = st.sidebar.slider("Min samples leaf", 2, 10)
         bootstrap = st.sidebar.selectbox("Bootstrap", ["True", "False"])
         bootstrap = 1 if bootstrap == "True" else 0
         model = create_model(
@@ -116,8 +116,8 @@ def model_chooser(algorithm):
     elif algorithm == "Decision Tree Regression":
         st.sidebar.markdown("Choose parameters")
         max_depth = st.sidebar.slider("Max depth", 1, 10)
-        min_samples_split = st.sidebar.slider("Min samples split", 1, 10)
-        min_samples_leaf = st.sidebar.slider("Min samples leaf", 1, 10)
+        min_samples_split = st.sidebar.slider("Min samples split", 2, 10)
+        min_samples_leaf = st.sidebar.slider("Min samples leaf", 2, 10)
         model = create_model(
             "decision_tree_regression",
             max_depth=max_depth,
@@ -150,7 +150,7 @@ def model_chooser(algorithm):
     # ___________ KMeans ___________
     elif algorithm == "KMeans":
         st.sidebar.markdown("Choose parameters")
-        n_clusters = st.sidebar.slider("Number of clusters", 1, 10)
+        n_clusters = st.sidebar.slider("Number of clusters", 1, 10, 2)
         init = st.sidebar.selectbox("Init", ["k-means++", "random"])
         max_iter = st.sidebar.slider("Max iterations", 100, 1000)
         model = create_model(
@@ -168,7 +168,7 @@ def model_chooser(algorithm):
     # ___________ Agglomerative Clustering ___________
     elif algorithm == "Agglomerative Clustering":
         st.sidebar.markdown("Choose parameters")
-        n_clusters = st.sidebar.slider("Number of clusters", 1, 10)
+        n_clusters = st.sidebar.slider("Number of clusters", 1, 10, 2)
         linkage = st.sidebar.selectbox(
             "Linkage", ["ward", "complete", "average", "single"]
         )
@@ -179,7 +179,7 @@ def model_chooser(algorithm):
     # ___________ PCA ___________
     elif algorithm == "PCA":
         st.sidebar.markdown("Choose parameters")
-        n_components = st.sidebar.slider("Number of components", 1, 10)
+        n_components = st.sidebar.slider("Number of components", 1, 10, 2)
         model = create_model("pca", n_components=n_components)
 
     return model

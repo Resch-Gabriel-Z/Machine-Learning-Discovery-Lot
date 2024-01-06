@@ -65,7 +65,7 @@ def create_model(model_type, **kwargs):
         return KernelRidge(**kwargs)
     elif model_type == "kmeans":
         # kwargs: n_clusters, init, max_iter
-        return KMeans(**kwargs)
+        return KMeans(**kwargs, n_init="auto")
     elif model_type == "dbscan":
         # kwargs: eps, min_samples, metric
         return DBSCAN(**kwargs)

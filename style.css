@@ -15,6 +15,31 @@ p.Section_title {
     font-weight: bold;
 }
 
+.algorithm_section {
+    text-align: center;
+    font-size: 20px;
+}
+
+.dataset_string {
+    text-align: center;
+    font-size: 15px;
+    font-style: italic;
+}
+
+.Result {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: underline;
+
+}
+
+.About p {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: underline;
+}
 /* footer section */
 
 .footer {
@@ -25,6 +50,7 @@ p.Section_title {
     background-color: #331b1b;
     color: white;
     text-align: center;
+    margin: auto;
 }
 
 .footer p {

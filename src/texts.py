@@ -306,9 +306,9 @@ footer = """
 about = """
     <h1>About</h1>
     <p>
-        This was made to visualize how different algorithms work on different datasets.
-        How some algorithms have poor results due to data being linearly inseparable.
-        or how some algorithms are very sensitive to hyperparameters.
+        This was made to visualize how different algorithms work on different datasets.<br>
+        How some algorithms have poor results due to data being linearly inseparable.<br>
+        or how some algorithms are very sensitive to hyperparameters.<br>
         I hope it helps you a bit :)
     </p>
     <p>

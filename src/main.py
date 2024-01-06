@@ -111,18 +111,12 @@ X_train, X_test, y_train, y_test, df = load_data(
 )
 X = np.concatenate((X_train, X_test))
 y = np.concatenate((y_train, y_test))
-# for the plot i need to come up with a better solution, this is just a workaround
-# classifcation is good, so scatter plot is fine, same goes for clustering and dimensionality reduction
-# regression is like 10d, so i need to come up with a better solution
-# probably just a heatmap with the correlation matrix
-
-
-# ------------------- Sidebar -------------------
-
 
 # ------------------- Main -------------------
 
-st.markdown('<p class="Page_title">Streamlit Template</h1>', unsafe_allow_html=True)
+st.markdown(
+    '<p class="Page_title">Machine Learning Project</h1>', unsafe_allow_html=True
+)
 
 Home, About = st.tabs(["Home", "About"])
 
@@ -132,7 +126,7 @@ with Home:
 
     with header_container:
         st.markdown(
-            f'<p class="Section_title">{other_string("header")}</p>',
+            f'{other_string("header")}',
             unsafe_allow_html=True,
         )
         st.markdown("---")
@@ -143,7 +137,7 @@ with Home:
 
         with description_container:
             st.markdown(
-                f'<p class="Section_title">{algorithm_string(algorithm)}</p>',
+                f'<p class="algorithm_section">{algorithm_string(algorithm)}</p>',
                 unsafe_allow_html=True,
             )
             st.markdown("---")
@@ -337,7 +331,10 @@ with Home:
                     )
 
     with Home_col2:
-        st.write(dataset_string(dataset))
+        st.markdown(
+            f'<p class="dataset_string">{dataset_string(dataset)}</p>',
+            unsafe_allow_html=True,
+        )
         if (
             dataset.lower().replace(" ", "_") == "diabetes"
             or dataset.lower().replace(" ", "_") == "iris"
@@ -464,7 +461,7 @@ with Home:
         # write score here
         if score != None:
             st.markdown(
-                f'<p class="Result">Score: {np.round(score,2)}</p>',
+                f'<p class="Result">Score: {np.round(score,2)} MSE</p>',
                 unsafe_allow_html=True,
             )
         if conf != None:
@@ -476,7 +473,7 @@ with Home:
 
 with About:
     st.markdown(
-        f'<p class="Section_title">{other_string("about")}</p>', unsafe_allow_html=True
+        f'<p class="About">{other_string("about")}</p>', unsafe_allow_html=True
     )
 
 
