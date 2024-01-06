@@ -12,7 +12,7 @@ This project is designed for both beginners and experienced practitioners in the
 ### Step 1: Clone the Repository
 
 ```bash
-git clone []
+git clone https://github.com/Resch-Gabriel-Z/Machine-Learning-Discovery-Lot.git
 ```
 
 ### Step 2: Create a Virtual Environment (Optional but Recommended)
