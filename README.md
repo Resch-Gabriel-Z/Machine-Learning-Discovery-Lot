@@ -1,11 +1,14 @@
 # Machine Learning Discovery Lot
----
 
 ## Description
 
 Welcome. 
 
 This project is designed for both beginners and experienced practitioners in the field of machine learning, offering an intuitive and engaging way to understand the mechanics and applications of various algorithms available in the scikit-learn library.
+
+## Open in Web
+
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://machine-learning-discovery-lot.streamlit.app/)
 
 ## Installation
 
@@ -52,4 +55,5 @@ pip install -r requirements.txt
 ```bash
 streamlit run main.py
 ```
+
 

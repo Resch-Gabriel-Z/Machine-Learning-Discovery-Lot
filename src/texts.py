@@ -312,6 +312,6 @@ about = """
         I hope it helps you a bit :)
     </p>
     <p>
-        The source code can be found on <a href="
+        The source code can be found on <a href="https://github.com/Resch-Gabriel-Z/Machine-Learning-Discovery-Lot">GitHub</a>
         </p>
 """
